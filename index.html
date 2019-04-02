@@ -65,16 +65,13 @@
                 //if(cube2.position.x >= 5) leftCube = true;
                 //else if(cube2.position.x <= 0) leftCube = false;
 
+                if(cube2.position.x > 4) {leftCirc = true; circFront *= -1}
+                else if(cube2.position.x < 0) {leftCirc = false; circFront *= -1}
 
-                if(camera.position.x > 16) {leftCirc = true; circFront *= -1}
-                else if(camera.position.x < 0) {leftCirc = false; circFront *= -1}
+                if(leftCirc) cube2.position.x -= 0.01;
+                else cube2.position.x += 0.01;
 
-                if(leftCirc) camera.position.x -= 0.01;
-                else camera.position.x += 0.01;
-
-                camera.position.z = Math.sqrt(8 - (Math.pow(camera.position.x-4, 2))) * circFront;
-                camera.rotation.y += 5;
-
+                cube2.position.z = Math.sqrt(4 - ((cube2.position.x-Math.sqrt(4)) * (cube2.position.x-Math.sqrt(4)))) * circFront;
 
                 /*
                 if(camera.position.x > 5.5) leftCirc = true;
