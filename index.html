@@ -23,9 +23,9 @@
 
             var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
             var material = new THREE.MeshPhongMaterial( { color: 0x050b, side: THREE.FrontSide } );
-            var materialLemon = new THREE.MeshPhongMaterial( { color: 0x050b, side: THREE.FrontSide } );
+            var materialLemon = new THREE.MeshPhongMaterial( { color: 0x040b, side: THREE.FrontSide } );
             //var material = new THREE.MeshBasicMaterial( { color: 0x04db} );
-            var cube = new THREE.Mesh( geometry, material );
+            var cube = new THREE.Mesh( geometry, materialLemon);
             var cube2 = new THREE.Mesh(geometry, material);
 
             scene.add( directionalLight );
@@ -35,7 +35,12 @@
 
             directionalLight.target = cube;
 
-            camera.position.z = 5;
+            camera.position.z = 3.5;
+            camera.position.x = 2.5;
+
+            cube2.position.x = 5;
+
+            var left = false;
 
             var animate = function () {
                 requestAnimationFrame( animate );
@@ -45,6 +50,13 @@
 
                 cube2.rotation.x += 0.02;
                 cube2.rotation.y += 0.02;
+
+                if(cube2.position.x >= 5) left = true;
+                else if(cube2.position.x <= 0) left = false;
+
+                if(left)
+                {cube2.position.x -= 0.025; cube.position.x += 0.025;}
+                else {cube2.position.x += 0.025; cube.position.x -= 0.025;}
 
                 renderer.render( scene, camera );
             };
