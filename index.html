@@ -25,19 +25,27 @@
             var material = new THREE.MeshPhongMaterial( { color: 0x050b, side: THREE.FrontSide } );
             //var material = new THREE.MeshBasicMaterial( { color: 0x04db} );
             var cube = new THREE.Mesh( geometry, material );
+            var cube2 = new THREE.Mesh(geometry, material);
 
             scene.add( directionalLight );
             scene.add( cube );
 
+            scene.add( cube2 );
+
             directionalLight.target = cube;
 
             camera.position.z = 5;
+
+            cube2.position.x += 2;
 
             var animate = function () {
                 requestAnimationFrame( animate );
 
                 cube.rotation.x += 0.01;
                 cube.rotation.y += 0.01;
+
+                cube2.rotation.x += 0.01;
+                cube2.rotation.y += 0.02;
 
                 renderer.render( scene, camera );
             };
