@@ -22,6 +22,9 @@
 
 
             var geometry = new THREE.BoxBufferGeometry( 3, 3, 1 );
+            var box_edges = new THREE.EdgesGeometry(geometry);
+            var line = new THREE.LineSegments(box_edges, new THREE.LineBasicMaterial({color:0x0}));
+
             var flat = new THREE.CylinderGeometry( 20, 20, 1, 32 );
             //var curvyBoi = new THREE.TorusKnotBufferGeometry( 10, 3, 100,  16 );
             //var curvyBoi = new THREE.TorusKnotBufferGeometry( 1, 0.25, 180, 20 );
@@ -33,6 +36,10 @@
             var cubeAwards = new THREE.Mesh(geometry, material);
             var floor = new THREE.Mesh(flat, new THREE.MeshBasicMaterial( { color: 0x1e7f01, side: THREE.FrontSide } ));
 
+            cubeProject.add(line.clone());
+            cubeWork.add(line.clone());
+            cubeAwards.add(line.clone());
+
             scene.add( ambientLight );
             scene.add( cubeProject );
             scene.add( cubeAwards );
@@ -41,9 +48,9 @@
 
             camera.position.set(0, 0, 0);
 
-            cubeProject.position.set(7, -1, 0);
-            cubeWork.position.set(-7, -1, 0);
-            cubeAwards.position.set(0, -1, 7);
+            cubeProject.position.set(7, 0, 0);
+            cubeWork.position.set(-7, 0, 0);
+            cubeAwards.position.set(0, 0, 7);
 
             floor.position.set(0, -2, 0);
 
